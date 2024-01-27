@@ -19,7 +19,15 @@ export default async function Home() {
     }
     redirect("/show");
   }
+  const notes = await Note.find();
 
+  async function deleteNote(data) {
+    "use server";
+    let id = JSON.parse(data.get("id")?.valueOf());
+
+    await Note.deleteOne({ _id: id });
+    redirect("/show");
+  }
   return (
     <main className="m-10 space-y-5">
       <h1 className="text-xl font-bold">Create Note</h1>
