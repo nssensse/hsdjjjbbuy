@@ -2,6 +2,7 @@ import Note from "../../../model/Note";
 
 import { redirect } from 'next/navigation'
 import dbConnect from "../dbConnect";
+import Link from "next/link";
 ////editing
 export default async function Home() {
   async function newNote(data) {
@@ -83,7 +84,11 @@ export default async function Home() {
                       </button>
                     </form>
                     {/* <Delete id={element._id}/> */}
- 
+                    <Link href={"/Edit/" + element._id}>
+                      <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer">
+                        Edit
+                      </button>
+                    </Link>
                   </div>
                 </li>
               </ul>
