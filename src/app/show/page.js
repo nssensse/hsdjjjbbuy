@@ -1,25 +1,11 @@
 import Note from "../../../model/Note";
-
+import Delete from "../components/Delete";
+import Link from "next/link";
 import { redirect } from 'next/navigation'
 import dbConnect from "../dbConnect";
-import Link from "next/link";
-////editing
-export default async function Home() {
-  async function newNote(data) {
-    "use server";
-    let title = data.get("title")?.valueOf();
-    let note = data.get("note")?.valueOf();
-    let winning = data.get("winning")?.valueOf();
-    try {
-      dbConnect()
-      let newNote = new Note({ title, note,winning });
-      await newNote.save();
-      console.log(newNote);
-    } catch (error) {
-      console.log(error)
-    }
-    redirect("/show");
-  }
+
+export default async function show() {
+  dbConnect()
   const notes = await Note.find();
 
   async function deleteNote(data) {
@@ -29,49 +15,18 @@ export default async function Home() {
     await Note.deleteOne({ _id: id });
     redirect("/show");
   }
+
   return (
     <main className="m-10 space-y-5">
-      <h1 className="text-xl font-bold">Create Note</h1>
-      <form action={newNote}>
-        <div>
-          <label className="text-lg ">Title</label>
-          <br />
-          <input
-            type="text"
-            name="title"
-            className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
-          />
-        </div>
-        <div>
-          <label>Note</label>
-          <br />
-          <input
-            type="text"
-            name="note"
-            rows="3"
-            className="w-[100%] md:w-[50%] bg-slate-200 p-3"
-          ></input>
-        </div>
-        <div>
-          <label>Winning</label>
-          <br />
-          <input
-            type="text"
-            name="winning"
-            rows="3"
-            className="w-[100%] md:w-[50%] bg-slate-200 p-3"
-          ></input>
-        </div>
-        <button
-          type="submit"
-          className="p-3 bg-yellow-400 font-bold hover:bg-orange-500 hover:text-white"
-        >
-          Submit
-        </button>
-      </form><h1 className="text-xl font-bold">Notes</h1>
-
-
-      {notes.map((element) => {
+      <h1 className="text-xl font-bold">Notes</h1>
+      <div>
+        <ul className="flex font-bold">
+          <li className="flex-1">Title</li>
+          <li className="flex-1">Note</li>
+          <li className="flex-1">Options</li>
+        </ul>
+        <hr />
+        {notes.map((element) => {
           return (
             <>
               <ul key={element._id} className="flex">
@@ -101,8 +56,7 @@ export default async function Home() {
             </>
           );
         })}
-
+      </div>
     </main>
   );
 }
-
