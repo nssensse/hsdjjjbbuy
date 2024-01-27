@@ -84,6 +84,7 @@ const titleOfObjectWithMaxWinning1 = objectWithMaxWinning.note;
     await Note.deleteOne({ _id: id });
     redirect("/show");
   }
+  const maxWinning = Math.max(...notes.map(user => parseInt(user.winning) || 0));
 
   return (
     
@@ -140,9 +141,10 @@ const titleOfObjectWithMaxWinning1 = objectWithMaxWinning.note;
   
               {/* Add your user table here */}
               {notes.map((user, index) => (
+                
   <tr key={index} className={notes.length > 10 ? 'tech-slideshow' : ''}>
     <td>{index + 1}.</td>
-    <td style={{ textAlign: 'left' }}>{user.title}</td>
+    <td style={{textAlign: 'left', color: user.winning === maxWinning.toString() ? '#f8fa79e8' : '' }}>{user.title}</td>
     <td>{user.note}₽</td>
     <td>{user.winning}₽</td>
   </tr>
