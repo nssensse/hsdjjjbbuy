@@ -3,7 +3,7 @@ import Delete from "../components/Delete";
 import Link from "next/link";
 import { redirect } from 'next/navigation'
 import dbConnect from "../dbConnect";
-/////// widget
+
 export default async function show() {
   dbConnect()
   const notes = await Note.find();
