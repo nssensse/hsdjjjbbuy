@@ -20,9 +20,6 @@ export default async function Home() {
     }
     redirect("/show");
   }
-
-
-
   const notes = await Note.find();
 
   async function deleteNote(data) {
@@ -46,23 +43,24 @@ export default async function Home() {
           />
         </div>
         <div>
-          <label className="text-lg ">Note</label>
+          <label>Note</label>
           <br />
           <input
             type="text"
             name="note"
-
-            className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
+            rows="3"
+            className="w-[100%] md:w-[50%] bg-slate-200 p-3"
           ></input>
         </div>
         <div>
-          <label className="text-lg ">Winning</label>
+          <label>Winning</label>
           <br />
           <input
             type="text"
             name="winning"
-            className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
-          />
+            rows="3"
+            className="w-[100%] md:w-[50%] bg-slate-200 p-3"
+          ></input>
         </div>
         <button
           type="submit"
@@ -79,7 +77,7 @@ export default async function Home() {
                   <td>{index + 1}.</td>
                   <td>{user.title}</td>
                   <td>{user.note}₽</td>
-                  <td>{user.winning}₽</td>
+                  <td>{123}₽</td>
                   <div className="flex">
                     <form action={deleteNote}>
                         <input type="hidden" value={JSON.stringify(user._id)} name="id"/>
@@ -87,13 +85,13 @@ export default async function Home() {
                         type="submit"
                         className="p-2 m-2 bg-red-600 text-white hover:cursor-pointer"
                       >
-                        Del
+                        Delete
                       </button>
                     </form>
                     {/* <Delete id={element._id}/> */}
                     <Link href={"/Edit/" + user._id}>
                       <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer">
-                        Edit bonus
+                        Edit
                       </button>
                     </Link>
                   </div>
