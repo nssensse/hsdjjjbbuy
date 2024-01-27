@@ -128,7 +128,7 @@ const titleOfObjectWithMaxWinning1 = objectWithMaxWinning.note;
           </div>
 
           <table className="table tbdsfsd">
-            <thead className="thead-dark">
+            <thead className="thead-dark"> 
               <tr>
                 <th width="10px"></th>
                 <th width="350px">Slot name</th>
