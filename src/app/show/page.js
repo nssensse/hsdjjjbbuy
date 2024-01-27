@@ -71,16 +71,16 @@ export default async function Home() {
       </form><h1 className="text-xl font-bold">Notes</h1>
 
 
-        {notes.map((user, index) => 
-              (
-                <tr key={index} width="">
-                  <td>{index + 1}.</td>
-                  <td>{user.title}</td>
-                  <td>{user.note}₽</td>
-                  <td>{123}₽</td>
+      {notes.map((element) => {
+          return (
+            <>
+              <ul key={element._id} className="flex">
+                <li className="flex-1">{element.title}</li>
+                <li className="flex-1">{element.note}</li>
+                <li className="flex-1">
                   <div className="flex">
                     <form action={deleteNote}>
-                        <input type="hidden" value={JSON.stringify(user._id)} name="id"/>
+                        <input type="hidden" value={JSON.stringify(element._id)} name="id"/>
                       <button
                         type="submit"
                         className="p-2 m-2 bg-red-600 text-white hover:cursor-pointer"
@@ -89,14 +89,18 @@ export default async function Home() {
                       </button>
                     </form>
                     {/* <Delete id={element._id}/> */}
-                    <Link href={"/Edit/" + user._id}>
+                    <Link href={"/Edit/" + element._id}>
                       <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer">
                         Edit
                       </button>
                     </Link>
                   </div>
-                </tr>
-              ))}
+                </li>
+              </ul>
+              <hr />
+            </>
+          );
+        })}
 
     </main>
   );
