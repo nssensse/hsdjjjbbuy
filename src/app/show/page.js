@@ -87,13 +87,13 @@ export default async function Home() {
                         type="submit"
                         className="p-2 m-2 bg-red-600 text-white hover:cursor-pointer"
                       >
-                        Delete
+                        Del
                       </button>
                     </form>
                     {/* <Delete id={element._id}/> */}
                     <Link href={"/Edit/" + user._id}>
                       <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer">
-                        Edit
+                        Edit bonus
                       </button>
                     </Link>
                   </div>

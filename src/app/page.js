@@ -89,7 +89,7 @@ const titleOfObjectWithMaxWinning1 = objectWithMaxWinning.note;
     
     <main className="main">
       <>
-      <meta http-equiv="refresh" content="11.5"></meta>
+      <meta http-equiv="refresh" content="11"></meta>
         <div className="contcont">
           <div className="main-header">
             <div className="header-info">
@@ -140,7 +140,7 @@ const titleOfObjectWithMaxWinning1 = objectWithMaxWinning.note;
   
               {/* Add your user table here */}
               {notes.map((user, index) => (
-  <tr key={index} className="tech-slides1how" width="">
+  <tr key={index} className={notes.length > 10 ? 'tech-slideshow' : ''}>
     <td>{index + 1}.</td>
     <td style={{ textAlign: 'left' }}>{user.title}</td>
     <td>{user.note}₽</td>
