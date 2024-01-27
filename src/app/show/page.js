@@ -9,10 +9,10 @@ export default async function Home() {
     "use server";
     let title = data.get("title")?.valueOf();
     let note = data.get("note")?.valueOf();
-
+    let winning = data.get("winning")?.valueOf();
     try {
       dbConnect()
-      let newNote = new Note({ title, note });
+      let newNote = new Note({ title, note,winning });
       await newNote.save();
       console.log(newNote);
     } catch (error) {
@@ -20,6 +20,9 @@ export default async function Home() {
     }
     redirect("/show");
   }
+
+
+
   const notes = await Note.find();
 
   async function deleteNote(data) {
@@ -43,14 +46,23 @@ export default async function Home() {
           />
         </div>
         <div>
-          <label>Note</label>
+          <label className="text-lg ">Note</label>
           <br />
-          <textarea
+          <input
             type="text"
             name="note"
-            rows="3"
-            className="w-[100%] md:w-[50%] bg-slate-200 p-3"
-          ></textarea>
+
+            className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
+          ></input>
+        </div>
+        <div>
+          <label className="text-lg ">Winning</label>
+          <br />
+          <input
+            type="text"
+            name="winning"
+            className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
+          />
         </div>
         <button
           type="submit"
@@ -59,23 +71,18 @@ export default async function Home() {
           Submit
         </button>
       </form><h1 className="text-xl font-bold">Notes</h1>
-      <div>
-        <ul className="flex font-bold">
-          <li className="flex-1">Title</li>
-          <li className="flex-1">Note</li>
-          <li className="flex-1">Options</li>
-        </ul>
-        <hr />
-        {notes.map((element) => {
-          return (
-            <>
-              <ul key={element._id} className="flex">
-                <li className="flex-1">{element.title}</li>
-                <li className="flex-1">{element.note}</li>
-                <li className="flex-1">
+
+
+        {notes.map((user, index) => 
+              (
+                <tr key={index} width="">
+                  <td>{index + 1}.</td>
+                  <td>{user.title}</td>
+                  <td>{user.note}₽</td>
+                  <td>{user.winning}₽</td>
                   <div className="flex">
                     <form action={deleteNote}>
-                        <input type="hidden" value={JSON.stringify(element._id)} name="id"/>
+                        <input type="hidden" value={JSON.stringify(user._id)} name="id"/>
                       <button
                         type="submit"
                         className="p-2 m-2 bg-red-600 text-white hover:cursor-pointer"
@@ -84,19 +91,15 @@ export default async function Home() {
                       </button>
                     </form>
                     {/* <Delete id={element._id}/> */}
-                    <Link href={"/Edit/" + element._id}>
+                    <Link href={"/Edit/" + user._id}>
                       <button className="p-2 m-2 bg-blue-600 text-white hover:cursor-pointer">
                         Edit
                       </button>
                     </Link>
                   </div>
-                </li>
-              </ul>
-              <hr />
-            </>
-          );
-        })}
-      </div>
+                </tr>
+              ))}
+
     </main>
   );
 }

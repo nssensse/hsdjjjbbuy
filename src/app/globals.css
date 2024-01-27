@@ -17,6 +17,7 @@ body{
 
     
 }
+
 .contcont{
     font-family:Consolas, monospace;
    position: fixed ;
@@ -97,7 +98,7 @@ a {
 
 .bbtittle{
   position: fixed;
-  top: 10px;
+  top: 15px;
     height: 80px;
     width: 320px;
     padding-top: 10px;
@@ -110,12 +111,12 @@ a {
 }
 .nowslot{
   position: fixed;
-  top: 100px;
+  top: 105px;
     height: 40px;
     width: 320px;
     padding-top: 5px;
     padding-left: 10px;
-    color: #e0e0e0e8;
+    color: #ffffff;
     background: rgba(0, 0, 0, 0.25);
     font-size:22px;
     overflow: hidden;
@@ -129,7 +130,7 @@ a {
     width: 320px;
     padding-top: 5px;
     padding-left: 10px;
-    color: #e0e0e0e8;
+    color: #f8fa79e8;
     background: rgba(0, 0, 0, 0.25);
     font-size:22px;
     overflow: hidden;
@@ -137,10 +138,10 @@ a {
 }
 #table_fixed {
     position: fixed;
-    top: 10px;
+    top: 15px;
     left: 365px;
     width: 250px;
-    height: 185px;
+    height: 175px;
 }
 #table_fixed th{
 height: 10px;
@@ -253,23 +254,18 @@ tbody
     left: 0;
 
 
-    animation: moveSlideshow 10s;
+    animation: moveSlideshow 15s;
     animation-iteration-count: linear infinite;
     animation-delay: 2s;
 
   }
   
   @keyframes moveSlideshow {
-    0%{
+    from{
         top: 0px;
       }
-      25% {
-        top: -120px;
-      }
-      50% {
-        top: -260px;
-      }
-      75% {
+
+      to {
         top: -400px;
       }
 
@@ -584,5 +580,4 @@ top: -40px;
 
 
 }
-
 

@@ -10,7 +10,8 @@ export default async function Edit({params}){
         "use server";
         let title = data.get("title")?.valueOf();
         let note = data.get("note")?.valueOf();
-        let updatedNote = await Note.findByIdAndUpdate({_id: params.id },{ title, note });
+        let winning = data.get("winning")?.valueOf();
+        let updatedNote = await Note.findByIdAndUpdate({_id: params.id },{ title, note,winning });
         console.log(updatedNote);
         redirect('/show')
     }
@@ -31,13 +32,24 @@ export default async function Edit({params}){
           <div>
             <label>Note</label>
             <br />
-            <textarea
+            <input
               type="text"
               name="note"
               rows="3"
-              className="w-[100%] md:w-[50%] bg-slate-200 p-3"
+              className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
               defaultValue={notes?.note}
-            ></textarea>
+            ></input>
+          </div>
+          <div>
+            <label>Winning</label>
+            <br />
+            <input
+              type="text"
+              name="winning"
+              rows="3"
+              className="w-[100%] md:w-[50%] bg-slate-200 h-10 p-3"
+              defaultValue={notes?.winning}
+            ></input>
           </div>
           <button
             type="submit"

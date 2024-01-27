@@ -7,6 +7,9 @@ const noteSchema = new mongoose.Schema({
     note:{
         type:String
     },
+    winning:{
+        type:String
+    },
     date:{
         type: Date,
         default: Date.now
