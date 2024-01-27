@@ -1,8 +1,7 @@
 import Note from "../../model/Note";
 import { redirect } from "next/navigation";
 import dbConnect from "./dbConnect";
-import Delete from "./components/Delete";
-import Link from "next/link";
+
 //////widget
 export default async function show() {
   dbConnect();
@@ -73,7 +72,7 @@ export default async function show() {
               {/* Add your user table here */}
               {notes.map((user, index) => 
               (
-                <tr key={index} className="tech-slide1show" width="">
+                <tr key={index} className="tech-slideshow" width="">
                   <td>{index + 1}.</td>
                   <td>{user.title}</td>
                   <td>{user.note}₽</td>
