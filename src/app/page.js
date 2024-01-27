@@ -2,7 +2,8 @@ import Note from "../../model/Note";
 import { redirect } from "next/navigation";
 import dbConnect from "./dbConnect";
 
-export default function Home() {
+export default async function Home() {
+  const notes = await Note.find();
   async function newNote(data) {
     "use server";
     let title = data.get("title")?.valueOf();
@@ -18,7 +19,13 @@ export default function Home() {
     }
     redirect("/show");
   }
+  async function deleteNote(data) {
+    "use server";
+    let id = JSON.parse(data.get("id")?.valueOf());
 
+    await Note.deleteOne({ _id: id });
+    redirect("/show");
+  }
   return (
     <main className="m-10 space-y-5">
       <h1 className="text-xl font-bold">Create Note</h1>
@@ -49,6 +56,33 @@ export default function Home() {
           Submit
         </button>
       </form>
+      <h1 className="text-xl font-bold">Notes</h1>
+      <div>
+        <ul className="flex font-bold">
+          <li className="flex-1">Title</li>
+          <li className="flex-1">Note</li>
+          <li className="flex-1">Options</li>
+        </ul>
+        <hr />
+        {notes.map((element) => {
+          return (
+            <>
+              <ul key={element._id} className="flex">
+                <li className="flex-1">{element.title}</li>
+                <li className="flex-1">{element.note}</li>
+                <li className="flex-1">
+                  <div className="flex">
+                    
+                    {/* <Delete id={element._id}/> */}
+                    
+                  </div>
+                </li>
+              </ul>
+              <hr />
+            </>
+          );
+        })}
+      </div>
     </main>
   );
 }
