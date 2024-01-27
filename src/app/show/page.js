@@ -2,7 +2,8 @@ import Note from "../../../model/Note";
 
 import { redirect } from 'next/navigation'
 import dbConnect from "../dbConnect";
-export default function Home() {
+////editing
+export default async function Home() {
   async function newNote(data) {
     "use server";
     let title = data.get("title")?.valueOf();
